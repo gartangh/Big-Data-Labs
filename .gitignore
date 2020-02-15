@@ -72,4 +72,6 @@ fabric.properties
 
 # Own
 venv/
+.ipynb_checkpoints/
 *.zip
+*.exe
