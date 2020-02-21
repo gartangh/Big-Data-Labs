@@ -1,0 +1,101 @@
+	id	Title	Tags	ImdbScore
+0	1	The Shawshank Redemption	Crime,Drama	9.2
+1	2	The Godfather	Crime,Drama	9.2
+2	3	The Godfather: Part II	Crime,Drama	9.0
+3	4	Pulp Fiction	Crime,Drama,Thriller	8.9
+4	5	Schindler's List	Biography,Drama,History	8.9
+5	6	The Lord of the Rings: The Return of the King	Adventure,Fantasy	8.9
+6	7	The Good, the Bad and the Ugly	Western	8.9
+7	8	12 Angry Men	Drama	8.9
+8	9	The Dark Knight	Action,Crime,Drama	8.9
+9	10	Fight Club	Drama	8.9
+10	11	The Lord of the Rings: Fellowship of the Ring	Adventure,Fantasy	8.8
+11	12	Forrest Gump	Drama,Romance	8.7
+12	13	Goodfellas	Biography,Crime,Drama	8.7
+13	14	One Flew Over the Cuckoo's Nnest	Drama	8.7
+14	15	Star Wars Episode V – The Empire Strikes Back	Action,Adventure,Fantasy	8.7
+15	16	Inception	Action,Mystery,Sci-Fi	8.7
+16	17	The Lord of the Rings: The two towers	Adventure,Fantasy	8.7
+17	18	The Matrix	Action,Sci-Fi	8.7
+18	19	Star Wars Episode IV – A New Hope	Action,Adventure,Fantasy	8.7
+19	20	Seven Samurai	Drama	8.7
+20	21	Psycho	Horror,Mystery,Thriller	8.6
+21	22	The Silence of the Lambs	Drama,Thriller	8.6
+22	23	Casablanca	Drama,Romance,War	8.6
+23	24	It's a wonderful Life	Drama,Family,Fantasy	8.6
+24	25	City of God	Crime,Drama	8.6
+25	26	Interstellar	Adventure,Sci-Fi	8.6
+26	27	Se7en	Drama,Mystery,Thriller	8.6
+27	28	The Usual Suspects	Crime,Drama,Thriller	8.6
+28	29	Once upon a Time in the West	Western	8.6
+29	30	Leon: The Professional	Crime,Drama,Thriller	8.6
+30	31	La Vita e bella	Comedy,Drama,Romance	8.6
+31	32	American History X	Crime,Drama	8.6
+32	33	City Lights	Comedy,Drama,Romance	8.6
+33	34	Spirited Away	Animation,Adventure,Family	8.6
+34	35	Whiplash	Drama,Music	8.6
+35	36	Rear window	Mystery,Thriller	8.6
+36	37	The Intouchables	Biography,Comedy,Drama	8.6
+37	38	Gladiator	Action,Drama	8.5
+38	39	Saving Private Ryan	Action,Drama,War	8.5
+39	40	The Green Mile	Crime,Drama,Fantasy	8.5
+40	41	Raiders of the Lost Ark	Action,Adventure	8.5
+41	42	Apocalypse Now	Drama,War	8.5
+42	43	The Pianist	Biography,Drama,War	8.5
+43	44	Dr. Strangelove or: How I learned to Stop Worrying and Love the Bomb	Comedy,War	8.5
+44	45	Modern Times	Comedy,Drama	8.5
+45	46	Terminator 2: Judgement Day	Action,Sci-Fi	8.5
+46	47	Memento	Mystery,Thriller	8.5
+47	48	The Departed	Crime,Drama,Thriller	8.5
+48	49	Sunset Blvd	Drama,Film-Noir	8.5
+49	50	Back to the future	Adventure,Comedy,Sci-Fi	8.5
+50	51	Alien	Horror,Sci-Fi	8.5
+51	52	The Prestige	Drama,Mystery,Thriller	8.5
+52	53	The Great Dictator	Comedy,Drama,War	8.4
+53	54	The Lion King	Animation,Adventure,Drama	8.4
+54	55	Das Leben der Anderen	Drama,Thriller	8.4
+55	56	Cinema Paradisio	Drama	8.4
+56	57	Django Unchained	Western	8.4
+57	58	The Shining	Horror	8.4
+58	59	The Dark Knight	Action,Thriller	8.4
+59	60	Paths Of Glory	Drama,War	8.4
+60	61	American Beauty	Drama	8.4
+61	62	Wall-E	Animation,Adventure,Romance	8.4
+62	63	North by Northwest	Adventure,Mystery,Thriller	8.4
+63	64	Aliens	Action,Adventure,Sci-Fi	8.4
+64	65	Citizen Kane	Drama,Mystery	8.4
+65	66	Vertigo	Mystery,Romance,Thriller	8.4
+66	67	Grave of the Fireflies	Animation,Drama,War	8.4
+67	68	Amelie	Comedy,Romance	8.4
+68	69	M	Crime,Drama,Thriller	8.4
+69	70	Das Boot	Adventure,Drama,War	8.4
+70	71	Old Boy	Drama,Mystery,Thriller	8.4
+71	72	Princess Monoke	Animation,Adventure,Fantasy	8.4
+72	73	Toy Story 3	Animation,Adventure,Comedy	8.4
+73	74	Star Wars Episode VI – Return of the Jedi	Action,Adventure,Fantasy	8.4
+74	75	Once upon a Time in America	Crime,Drama	8.4
+75	76	Reservoir Dogs	Crime,Drama	8.4
+76	77	A Clockwork Orange	Crime,Drama,Sci-Fi	8.3
+77	78	Taxi Driver	Crime,Drama	8.3
+78	79	Braveheart	Action,Biography,Drama	8.3
+79	80	Double Indemnity	Crime,Drama,Film-Noir	8.3
+80	81	Requiem for a Dream	Drama	8.3
+81	82	To Kill a Mockingbird	Drama	8.3
+82	83	Witness for the Prosecution	Crime,Drama,Mystery	8.3
+83	84	Lawrence of Arabia	Adventure,Biography,Drama	8.3
+84	85	Eternal Sunshine of the Spotless Mind	Drama,Romance,Sci-Fi	8.3
+85	86	Full Metal Jacket	Drama,War	8.3
+86	87	Singin' in the Rain	Comedy,Musical,Romance	8.3
+87	88	The Sting	Comedy,Crime,Drama	8.3
+88	89	Bicycle Thieves	Drama	8.3
+89	90	Amadeus	Biography,Drama,Music	8.3
+90	91	Monty Python and the Holy Grail	Adventure,Comedy,Fantasy	8.3
+91	92	Snatch	Comedy,Crime	8.3
+92	93	2001: A space Odyssey	Mystery,Sci-Fi	8.3
+93	94	The Kid	Comedy,Drama,Family	8.3
+94	95	For a Few Dollars More	Western	8.3
+95	96	Rashomon	Crime,Drama,Mystery	8.3
+96	97	L.A. Confidential	Crime,Drama,Mystery	8.3
+97	98	All About Eve	Drama	8.3
+98	99	The Apartment	Comedy,Drama,Romance	8.3
+99	100	Inglorious Basterds	Adventure,Drama,War	8.3

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title> Pre-attentive Visualizations </title>
+<script type="text/javascript" src="d3/d3.min.js"></script>
+
+<style>
+.axis text {
+	font: 15px sans-serif;
+	}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	}
+</style>
+
+</head>
+<body>
+<!--4) create buttons and input text boxes to control the behaviour of the viz from the browser-->
+<form action="#" onsubmit="return onClick()">
+  <label for="numPoints">Elements:</label><br>
+  <input type="number" id="numPoints" name="numPoints" value="20"><br>
+  <label for="exposure">Exposure:</label><br>
+  <input type="number" id="exposure" name="exposure" value="250"><br>
+  <label for="trials">Trials:</label><br>
+  <input type="number" id="trials" name="trials" value="5"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<script>
+//1
+function createNonCollidingPoints(width, height, radius, numPoints){
+	var points = [];
+	tries = 0;
+	while (numPoints > 0) {
+		x = Math.floor(Math.random() * (width-2*radius) + radius);
+		y = Math.floor(Math.random() * (height-2*radius) + radius);
+
+		collides = false;
+		points.forEach(function (point) {
+  			if (Math.pow(point[0]-x, 2) + Math.pow(point[1]-y, 2) < Math.pow(2*radius, 2)) {
+				collides = true;
+			}
+		});
+
+		if (!collides) {
+			points.push([x, y]);
+			numPoints = numPoints - 1;
+			tries = 0;
+		}
+		else {
+			++tries;
+		}
+
+		if (tries == 10){
+			break;
+		}
+	}
+
+	return points;
+}
+
+//2 join the points with the svg circles, how does a circle now its color? (red or gray)
+function scatterPlot(pointData, radius, width, height){
+	var svg = d3.select('body').append("svg")
+		.attr("width", width)
+		.attr("height", height);
+
+	var bars = svg.selectAll("circle").data(pointData).enter();
+
+	var circles = bars.append('circle')
+		.attr('cx',      function(d) { return d[0] })
+		.attr('cy',      function(d) { return d[1] })
+		.attr('r', 		radius)
+		.style('fill','rgb(128,128,128)');
+
+	if (Math.random() > 0.5) {
+		circleElements = circles.nodes();
+		d3.select(circleElements[1]).style("fill","red");
+	}
+}
+
+//3 use setTimeOut and setInterval to control the blinking of the applet
+
+//4 make the visualization configurable from the brower.
+//  a useful tutorial is: http://www.d3noob.org/2014/04/using-html-inputs-with-d3js.html
+
+var busy = false;
+function onClick() {
+	if (busy == false) {
+		busy = true
+		numPoints = document.getElementById('numPoints').value;
+		exposure = document.getElementById('exposure').value;
+		trials = document.getElementById('trials').value;
+		
+		var x = 0;
+		var intervalID = setInterval(function(d) {
+			pointData = createNonCollidingPoints(500, 500, 10, numPoints);
+			scatterplot = scatterPlot(pointData, 10, 500, 500);
+			console.log(x+1);
+			if (++x == trials) {
+				window.clearInterval(intervalID);
+				busy = false;
+			}
+			setTimeout(function(d)  {
+			d3.selectAll("svg").remove();
+	 	}, exposure);
+	 	}, 2000);
+
+	 	setTimeout(function(d)  {
+			busy = false;
+	 	}, trials * 2000 + exposure);
+	}
+}
+
+
+</script>
+
+</body>

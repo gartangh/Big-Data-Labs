@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title> MatrixViz </title>
+<script type="text/javascript" src="d3/d3.min.js"></script>
+<!-- <script type="text/javascript" src="d3/d3-scale-chromatic.min.js"></script>-->
+<script src="colorbrewer/colorbrewer.js"></script>
+<style>
+.axis text {
+	font: 15px sans-serif;
+	}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	}
+</style>
+</head>
+
+<body>
+<script>
+//http://bl.ocks.org/mbostock/5577023 for all colorbrewer scales!!
+//var colorbrewer = { scheme: { 3: [], 4:[]}} => colorbrewer.RdYlGn[3] gives us: ["#fc8d59", "#ffffbf", "#91cf60"]
+
+var brewer = colorbrewer.RdYlGn[10];
+
+var movienames = "moviesIMDB.tsv";
+var moviesurvey  = "movieSurvey.tsv";
+
+// process the data
+d3.tsv(movienames, function(data_movienames){
+	d3.tsv(moviesurvey, function(data_survey){
+		title = data_movienames.Title;
+		evaluator = data_survey.Evaluator;
+		score = data_survey.Score;
+
+		createVisualization(evaluator, title, score, brewer);
+	});
+});
+
+size_x = 0;
+size_y = 0;
+width = ;
+height = 500;
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width)
+    .attr("height", height);
+
+// create the visualization
+function createVisualization(evaluators, movies, brewer){
+	
+
+    svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+
+    var numrows = evaluators.length;
+	var numcols = evaluators.movies;
+
+	var matrix = new Array(numrows);
+	for (var i = 0; i < numrows; i++) {
+	  matrix[i] = new Array(numcols);
+	  for (var j = 0; j < numcols; j++) {
+	    matrix[i][j] = Math.random()*2 - 1;
+	  }
+	}
+
+	var x = d3.scale.ordinal()
+	    .domain(d3.range(numcols))
+	    .rangeBands([0, width]);
+
+	var y = d3.scale.ordinal()
+	    .domain(d3.range(numrows))
+	    .rangeBands([0, height]);
+
+
+}
+</script>
+</body>
