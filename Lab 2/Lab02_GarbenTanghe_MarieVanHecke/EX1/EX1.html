@@ -2,24 +2,21 @@
 <head>
 <meta charset="utf-8">
 <title> Tuftes Bar Chart </title>
-
 <script type="text/javascript" src="d3/d3.min.js"></script>
-
 <style>
 	.axis text {
 		font: 15px sans-serif;
-		}
+	}
 	.axis path,
 	.axis line {
 		fill: none;
 		stroke: #000;
 		shape-rendering: crispEdges;
-		}
+	}
 </style>
 </head>
+
 <body>
-
-
 <script>
 var width = 1200;
 var height = 800;
@@ -29,22 +26,20 @@ var svg = d3.select('body').append("svg")
 		.attr("width", width)
 		.attr("height", height)
 
-
-//1 dataset
-var foods = ["French Fries","Potato Chips","Bacon","Pizza","Chili Dog"];
-var cals = [607,542,533,296,260];
+// 1 dataset
+var foods = ["French Fries", "Potato Chips", "Bacon", "Pizza", "Chili Dog"];
+var cals = [607, 542, 533, 296, 260];
 var dataset = foods.map(function(food, i) {
   return [food, cals[i]];
 });
 
-//2 scales
-var xScale = d3.scalePoint().domain(foods).range([0, width-50]) // Ordinal
+// 2 scales
+var xScale = d3.scalePoint().domain(foods).range([0, width-200]) // Ordinal
 var yScale = d3.scaleLinear().domain([0, d3.max(cals)]).range([20, height-20]) // Linear
 
-//bars
+// Bars
 var bars = svg.selectAll("rect").data(dataset).enter()
-
-//refpoint is upper left corner
+// Note: refpoint is upper left corner
 var rects = bars.append('rect')
 	.attr('x',      function(d) { return xScale(d[0]) })
 	.attr('y',      function(d) { return height - yScale(d[1]) - 20})
@@ -52,29 +47,28 @@ var rects = bars.append('rect')
 	.attr('height', function(d) { return yScale(d[1]) })
 	.style('fill','rgb(128,128,128)');
 
-//4 frequency vaues and xlabels
+// 4 frequency vaues
 bars.append('text')
 	.attr('x', function(d) { return xScale(d[0]) + 10; })
 	.attr('y', function(d) { return height - yScale(d[1]); })
 	.style('fill', 'white')
 	.text((function(d) { return d[1] }));
 
+// 4 xlabels
 bars.append('text')
 	.attr('x', function(d) { return xScale(d[0]); })
 	.attr('y', function(d) { return height - 5; })
 	.style('fill', 'black')
 	.text((function(d) { return d[0] }));
 
-//5 events
+// 5 events
 rects.on("mouseover", function(d){
-		var currentBar = d3.select(this);
-		currentBar.style('fill', 'red')
-	});
+	var currentBar = d3.select(this);
+	currentBar.style('fill', 'red')
+});
 rects.on("mouseout", function(d){
-		var currentBar = d3.select(this);
-		currentBar.style('fill', 'rgb(128,128,128)')
-	});
+	var currentBar = d3.select(this);
+	currentBar.style('fill', 'rgb(128,128,128)')
+});
 </script>
-
-
 </body>
