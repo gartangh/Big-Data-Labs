@@ -22,62 +22,112 @@
 <body>
 <script>
 //http://bl.ocks.org/mbostock/5577023 for all colorbrewer scales!!
-//var colorbrewer = { scheme: { 3: [], 4:[]}} => colorbrewer.RdYlGn[3] gives us: ["#fc8d59", "#ffffbf", "#91cf60"]
+//colorbrewer.RdYlGn[3] gives us: ["#fc8d59", "#ffffbf", "#91cf60"]
 
 var brewer = colorbrewer.RdYlGn[10];
 
 var movienames = "moviesIMDB.tsv";
 var moviesurvey  = "movieSurvey.tsv";
 
-// process the data
-d3.tsv(movienames, function(data_movienames){
-	d3.tsv(moviesurvey, function(data_survey){
-		title = data_movienames.Title;
-		evaluator = data_survey.Evaluator;
-		score = data_survey.Score;
+//size_x = 0;
+//size_y = 0;
+var text_margin = 10;
+var width = 0;
+var height = text_margin;
 
-		createVisualization(evaluator, title, score, brewer);
-	});
-});
-
-size_x = 0;
-size_y = 0;
-width = ;
-height = 500;
+var r_width = 5; // Width of a rectangle
+var r_height = 10; // Height of a rectangle
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width)
     .attr("height", height);
 
+var info = svg.append('text')
+    .attr('x', 0)
+    .attr('y', text_margin-3)
+    .style('fill', 'black')
+    .attr('font-size', '9px')
+    .text("");
+
+var evaluators = [];
+var titles = [];
+
+// Process the data
+d3.tsv(movienames, function(data_movienames) {
+	d3.tsv(moviesurvey, function(data_survey) {
+		// Movie data
+		title = data_movienames.Title;
+        movienames_id = data_movienames.id;
+        
+        // Survey data
+        survey_id = data_survey.id;
+		evaluator = data_survey.Evaluator;
+		score = Math.round(data_survey.Score);
+        seen = data_survey.Seen;
+        
+        if (movienames_id == survey_id) {
+        	createVisualization(evaluator, title, score, seen);
+    	}
+	});
+});
+
 // create the visualization
-function createVisualization(evaluators, movies, brewer){
-	
+function createVisualization(evaluator, title, score, seen) {
+	// Check for new evaluator
+	if (!evaluators.includes(evaluator)) {
+        evaluators.push(evaluator);
+        height = height + r_height;
+        svg.attr("height", height);
+    }
 
-    svg.append("rect")
-    .attr("class", "background")
-    .attr("width", width)
-    .attr("height", height);
+    // Check for new movie
+    if (!titles.includes(title)) {
+        titles.push(title);
+        width = width + r_width;
+        svg.attr("width", width);
+    }
 
-    var numrows = evaluators.length;
-	var numcols = evaluators.movies;
+  	// Get indices
+    indexEval = evaluators.indexOf(evaluator);
+    indexTitle = titles.indexOf(title);
 
-	var matrix = new Array(numrows);
-	for (var i = 0; i < numrows; i++) {
-	  matrix[i] = new Array(numcols);
-	  for (var j = 0; j < numcols; j++) {
-	    matrix[i][j] = Math.random()*2 - 1;
-	  }
+    // Get color
+    if (seen == "1") {
+    	color = brewer[score];
+	}
+	else {
+		color = "white";
 	}
 
-	var x = d3.scale.ordinal()
-	    .domain(d3.range(numcols))
-	    .rangeBands([0, width]);
+	// Create rectangle
+	var rects = svg.append("rect")
+	.attr("x", indexTitle*r_width)
+    .attr("y", indexEval*r_height + text_margin)
+    .attr("width", r_width)
+    .attr("height", r_height)
+    .attr("title", title)
+    .attr("evaluator", evaluator)
+    .attr("score", score)
+    .attr("seen", seen)
+    .style("fill", color);
+    
+    // On mouse over rectangle
+    rects.on("mouseover", function(d) {
+		var currentRect = d3.select(this);
+		if (currentRect.attr("seen") == "1") {
+			scoreText = currentRect.attr("score");
+		}
+		else {
+			scoreText = "not seen";
+		}
+       	info.text( currentRect.attr("evaluator") + " -> " + scoreText + ": " + currentRect.attr("title") );        
+	});
 
-	var y = d3.scale.ordinal()
-	    .domain(d3.range(numrows))
-	    .rangeBands([0, height]);
-
-
+    // On mouse out of rectangle
+    rects.on("mouseout", function(d) {
+        info.text("");
+	});
 }
 </script>
 </body>
+
